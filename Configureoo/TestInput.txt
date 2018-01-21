@@ -1,0 +1,5 @@
+CONFIGUREOO("cyphertext")
+
+CONFIGUREOO("cyphertext","keyname")
+
+CONFIGUREOO("cyphertext", "keyname")

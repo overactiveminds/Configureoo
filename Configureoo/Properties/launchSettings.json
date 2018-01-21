@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Configureoo": {
+      "commandName": "Project",
+      "commandLineArgs": "-f TestInput.txt"
+    }
+  }
+}
