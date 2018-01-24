@@ -2,7 +2,7 @@
   "profiles": {
     "Configureoo": {
       "commandName": "Project",
-      "commandLineArgs": "-f TestInput.txt"
+      "commandLineArgs": "keygen -k default"
     }
   }
 }

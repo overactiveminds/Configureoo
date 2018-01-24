@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Configureoo.Core.IO
+namespace Configureoo.Core.Parsing
 {
     public class Parser : IParser
     {
-        private readonly Regex _regEx = new Regex("CONFIGUREOO\\((\"(?'ciphertext'([^\"]|\"\")*)\")((,\\s?(\"(?'keyname'([^ \"]|\"\")*)\"))?)\\)");
+        private readonly Regex _regEx = new Regex("CFGRO_([^_CFGRO](?<ciphertext>.*))_CFGRO((KN_(<keyname>*.)_CFGRO)?)");
 
         public List<Tag> Parse(string input)
         {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Configureoo.Core.IO
+namespace Configureoo.Core.Parsing
 {
     public interface IParser
     {

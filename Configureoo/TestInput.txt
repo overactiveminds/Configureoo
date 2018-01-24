@@ -1,5 +1,5 @@
-CONFIGUREOO("cyphertext")
+CONFIGUREOO("someplaintextvalue1")
 
-CONFIGUREOO("cyphertext","keyname")
+CONFIGUREOO("someplaintextvalue2","default")
 
-CONFIGUREOO("cyphertext", "keyname")
+CONFIGUREOO("someplaintextvalue3", "default")

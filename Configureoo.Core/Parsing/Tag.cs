@@ -1,4 +1,4 @@
-﻿namespace Configureoo.Core.IO
+﻿namespace Configureoo.Core.Parsing
 {
     public class Tag
     {
@@ -8,14 +8,14 @@
 
         public string KeyName { get; }
 
-        public string CipherText { get; }
+        public string Text { get; }
 
-        public Tag(int index, int length, string keyname, string ciphertext)
+        public Tag(int index, int length, string keyname, string text)
         {
             Index = index;
             Length = length;
             KeyName = keyname;
-            CipherText = ciphertext;
+            Text = text;
         }
     }
 }
