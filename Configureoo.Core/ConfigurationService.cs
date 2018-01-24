@@ -46,7 +46,7 @@ namespace Configureoo.Core
                 writer.Write(source.Substring(currentChar, tag.Index - currentChar));
                 var key = keys[tag.KeyName];
                 string text = encrypt ? key.CryptoStrategy.Encrypt(tag.Text) : key.CryptoStrategy.Decrypt(tag.Text);
-                writer.Write(GetTag(text, tag.KeyName));
+                writer.Write(GetTag(tag, text));
                 currentChar = tag.Index + tag.Length;
             }
 
@@ -68,9 +68,10 @@ namespace Configureoo.Core
             return Run(source, true);
         }
 
-        private string GetTag(string contents, string keyName)
+        private string GetTag(Tag tag, string text)
         {
-            return $"CONFIGUREOO(\"{contents}\"" + (keyName == "\"default\"" ? ")" : $", \"{keyName}\")");
+            string keyName = tag.KeyNameSpecified ? tag.Whitespace + tag.KeyName : string.Empty;
+            return $"{tag.OpenTag}CFGO{keyName}{tag.CloseTag}{text}{tag.OpenTag}/CFGO{tag.CloseTag}";
         }
     }
 

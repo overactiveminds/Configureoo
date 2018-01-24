@@ -5,7 +5,7 @@ namespace Configureoo.Core.Parsing
 {
     public class Parser : IParser
     {
-        private readonly Regex _regEx = new Regex("CFGRO_([^_CFGRO](?<ciphertext>.*))_CFGRO((KN_(<keyname>*.)_CFGRO)?)");
+        private readonly Regex _regEx = new Regex("<CFGO((?<whitespace>\\s)(?<keyname>\\w+))?>(?<text>.*)</CFGO>|\\|CFGO((?<whitespacepipe>\\s)(?<keynamepipe>\\w+))?\\|(?<textpipe>.*)\\|/CFGO\\|");
 
         public List<Tag> Parse(string input)
         {
@@ -13,10 +13,39 @@ namespace Configureoo.Core.Parsing
             var matches = _regEx.Matches(input);
             foreach (Match match in matches)
             {
+                char openCharacter;
+                char closeCharacter;
+                string keyName;
+                string text;
+                bool hasKey;
+                string whitespace;
+                
+                if (match.Groups["text"].Success)
+                {
+                    openCharacter = '<';
+                    closeCharacter = '>';
+                    keyName = match.Groups["keyname"].Value;
+                    text = match.Groups["text"].Value;
+                    hasKey = match.Groups["keyname"].Success;
+                    whitespace = match.Groups["whitespace"].Value;
+                }
+                else
+                {
+                    openCharacter = closeCharacter = '|';
+                    keyName = match.Groups["keynamepipe"].Value;
+                    text = match.Groups["textpipe"].Value;
+                    hasKey = match.Groups["keynamepipe"].Success;
+                    whitespace = match.Groups["whitespacepipe"].Value;
+                }
+
                 tags.Add(new Tag(match.Index, 
                     match.Length, 
-                    match.Groups["keyname"].Success ? match.Groups["keyname"].Value : "default", 
-                    match.Groups["ciphertext"].Value)
+                    hasKey ? keyName : "default",
+                    hasKey,
+                    text, 
+                    openCharacter, 
+                    closeCharacter,
+                    whitespace)
                 );
             }
             return tags;
