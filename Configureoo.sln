@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configureoo.UnitTests", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configureoo.VisualStudioTools", "Configureoo.VisualStudioTools\Configureoo.VisualStudioTools.csproj", "{C643C44D-CD42-435E-B897-A2837ACD8FB8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configureoo.JsonConfigurationProvider", "Configureoo.JsonConfigurationProvider\Configureoo.JsonConfigurationProvider.csproj", "{ED73AA47-2799-4645-A383-2161D826C86B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C643C44D-CD42-435E-B897-A2837ACD8FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C643C44D-CD42-435E-B897-A2837ACD8FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C643C44D-CD42-435E-B897-A2837ACD8FB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED73AA47-2799-4645-A383-2161D826C86B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED73AA47-2799-4645-A383-2161D826C86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED73AA47-2799-4645-A383-2161D826C86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED73AA47-2799-4645-A383-2161D826C86B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
