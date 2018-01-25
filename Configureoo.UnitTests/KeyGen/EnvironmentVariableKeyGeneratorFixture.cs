@@ -24,11 +24,11 @@ namespace Configureoo.UnitTests.KeyGen
             var sut = new EnvironmentVariableKeyGenerator(mockRandomGenerator.Object);
 
             // Act
-            var actual = sut.Generate(expectedPrefix, expectedKeyName, expectedEnvTarget, out var actualConcatenatedKeyName);
+            var actual = sut.Generate(expectedPrefix, expectedKeyName, expectedEnvTarget);
 
             // Assert
-            Assert.AreEqual(actual, expectedKeyValue);
-            Assert.AreEqual(expectedConcatenatedKeyName, actualConcatenatedKeyName);
+            Assert.AreEqual(actual.Key, expectedKeyValue);
+            Assert.AreEqual(expectedConcatenatedKeyName, actual.EnvironmentVariableName);
             Assert.AreEqual(expectedKeyValue, Environment.GetEnvironmentVariable(expectedConcatenatedKeyName));
         }
     }

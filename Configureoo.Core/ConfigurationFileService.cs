@@ -17,7 +17,7 @@ namespace Configureoo.Core
             foreach (var file in files)
             {
                 string fileContents = File.ReadAllText(file);
-                string result = _configurationService.Encrypt(fileContents);
+                string result = _configurationService.EncryptForStorage(fileContents);
                 File.WriteAllText(file, result);
             }
         }
@@ -27,7 +27,7 @@ namespace Configureoo.Core
             foreach (var file in files)
             {
                 string fileContents = File.ReadAllText(file);
-                string result = _configurationService.Decrypt(fileContents);
+                string result = _configurationService.DecryptForEdit(fileContents);
                 File.WriteAllText(file, result);
             }
         }

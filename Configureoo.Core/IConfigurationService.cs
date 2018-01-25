@@ -2,7 +2,7 @@
 {
     public interface IConfigurationService
     {
-        string Decrypt(string source);
-        string Encrypt(string source);
+        string DecryptForEdit(string source);
+        string EncryptForStorage(string source);
     }
 }

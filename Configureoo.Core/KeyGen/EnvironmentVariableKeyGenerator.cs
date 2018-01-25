@@ -12,12 +12,26 @@ namespace Configureoo.Core.KeyGen
             _cryptoStrategy = cryptoStrategy;
         }
 
-        public string Generate(string environmentVariablePrefix, string keyName, EnvironmentVariableTarget target, out string concatenatedKeyName)
+        public EnvironmentVariableKey Generate(string environmentVariablePrefix, string keyName, EnvironmentVariableTarget target)
         {
-            concatenatedKeyName = environmentVariablePrefix + keyName;
+            string concatenatedKeyName = environmentVariablePrefix + keyName;
             string key = _cryptoStrategy.GenerateKey();
             Environment.SetEnvironmentVariable(concatenatedKeyName, key, target);
-            return key;
+            return new EnvironmentVariableKey(concatenatedKeyName, key);
+        }
+    }
+
+
+    public class EnvironmentVariableKey
+    {
+        public string EnvironmentVariableName { get;  }
+
+        public string Key { get;  }
+
+        public EnvironmentVariableKey(string variableName, string key)
+        {
+            EnvironmentVariableName = variableName;
+            Key = key;
         }
     }
 }

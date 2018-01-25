@@ -20,7 +20,37 @@ namespace Configureoo.Core
             _keyFactory = keyFactory;
         }
 
-        private string Run(string source, bool encrypt)
+        /// <summary>
+        /// Decrypts a config file for editing
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public string DecryptForEdit(string source)
+        {
+            return Run(source, false, true);
+        }
+
+        /// <summary>
+        /// Encrypts a config file for storing
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public string EncryptForStorage(string source)
+        {
+            return Run(source, true, true);
+        }
+
+        /// <summary>
+        /// Decrypts a config file and removes all Configureoo tags.  Use this merthod when loading the configuration for use by the application
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public string DecryptForLoad(string source)
+        {
+            return Run(source, false, false);
+        }
+
+        private string Run(string source, bool encrypt, bool includeTags)
         {
             var tags = _parser.Parse(source);
 
@@ -46,7 +76,7 @@ namespace Configureoo.Core
                 writer.Write(source.Substring(currentChar, tag.Index - currentChar));
                 var key = keys[tag.KeyName];
                 string text = encrypt ? key.CryptoStrategy.Encrypt(tag.Text) : key.CryptoStrategy.Decrypt(tag.Text);
-                writer.Write(GetTag(tag, text));
+                writer.Write(GetTag(tag, text, includeTags));
                 currentChar = tag.Index + tag.Length;
             }
 
@@ -58,20 +88,10 @@ namespace Configureoo.Core
             return writer.ToString();
         }
 
-        public string Decrypt(string source)
-        {
-            return Run(source, false);
-        }
-
-        public string Encrypt(string source)
-        {
-            return Run(source, true);
-        }
-
-        private string GetTag(Tag tag, string text)
+        private string GetTag(Tag tag, string text, bool includeTags)
         {
             string keyName = tag.KeyNameSpecified ? tag.Whitespace + tag.KeyName : string.Empty;
-            return $"{tag.OpenTag}CFGO{keyName}{tag.CloseTag}{text}{tag.OpenTag}/CFGO{tag.CloseTag}";
+            return includeTags ? $"{tag.OpenTag}CFGO{keyName}{tag.CloseTag}{text}{tag.OpenTag}/CFGO{tag.CloseTag}" : text;
         }
     }
 

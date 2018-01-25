@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.IO;
 using Configureoo.Core;
 using Configureoo.Core.Crypto.CryptoStrategies;
@@ -23,10 +24,16 @@ namespace Configureoo
 
                 c.OnExecute(() =>
                 {
+                    if (!files.HasValue())
+                    {
+                        c.ShowHelp("encrypt");
+                        return 1;
+                    }
+
                     foreach (var file in files.Values)
                     {
                         string fileContents = File.ReadAllText(file);
-                        string result = parser.Encrypt(fileContents);
+                        string result = parser.EncryptForStorage(fileContents);
                         File.WriteAllText(file, result);
                     }
                     return 0;
@@ -39,10 +46,16 @@ namespace Configureoo
 
                 c.OnExecute(() =>
                 {
+                    if (!files.HasValue())
+                    {
+                        c.ShowHelp("decrypt");
+                        return 1;
+                    }
+
                     foreach (var file in files.Values)
                     {
                         string fileContents = File.ReadAllText(file);
-                        string result = parser.Decrypt(fileContents);
+                        string result = parser.DecryptForEdit(fileContents);
                         File.WriteAllText(file, result);
                     }
                     return 0;
@@ -55,9 +68,14 @@ namespace Configureoo
 
                 c.OnExecute(() =>
                 {
+                    if (!keyName.HasValue())
+                    {
+                        c.ShowHelp("keygen");
+                        return 1;
+                    }
                     var generator = new EnvironmentVariableKeyGenerator(new AesCryptoStrategy(string.Empty));
-                    string key = generator.Generate(EnvironmentVariablePrefix, keyName.Value(), EnvironmentVariableTarget.User, out var concatenatedKeyName);
-                    Console.WriteLine($"Environment Variable: {concatenatedKeyName} set to {key}");
+                    var key = generator.Generate(EnvironmentVariablePrefix, keyName.Value(), EnvironmentVariableTarget.User);
+                    Console.WriteLine($"Environment Variable: {key.EnvironmentVariableName} set to {key.Key}");
                     return 0;
                 });
             });
