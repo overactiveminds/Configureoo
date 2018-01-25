@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configureoo.Core", "Configu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configureoo.KeyStore.EnvironmentVariables", "Configureoo.KeyStore.EnvironmentVariables\Configureoo.KeyStore.EnvironmentVariables.csproj", "{B14BC776-35C8-469F-877F-171530FEC54E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configureoo.UnitTests", "Configureoo.UnitTests\Configureoo.UnitTests.csproj", "{5B3F80E1-08E4-48F3-9566-3CF8007B66AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configureoo.UnitTests", "Configureoo.UnitTests\Configureoo.UnitTests.csproj", "{5B3F80E1-08E4-48F3-9566-3CF8007B66AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
