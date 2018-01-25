@@ -8,7 +8,7 @@ namespace Configureoo.KeyStore.EnvironmentVariables
     {
         private readonly string _namePrefix;
 
-        public EnvironmentVariablesKeyStore(string namePrefix)
+        public EnvironmentVariablesKeyStore(string namePrefix = "CONFIGUREOO_")
         {
             _namePrefix = namePrefix;
         }
@@ -19,12 +19,19 @@ namespace Configureoo.KeyStore.EnvironmentVariables
             foreach (var keyName in keys)
             {
                 string envKeyName = _namePrefix + keyName;
-                string rawKey = Environment.GetEnvironmentVariable(envKeyName);
+                string rawKey = FindEnvironmentVariable(envKeyName);
                 allKeys.Add(rawKey != null
                     ? new CryptoKey(keyName, true, factory.CreateFromRawKey(rawKey))
                     : new CryptoKey(keyName, false, null));
             }
             return allKeys;
+        }
+
+        private string FindEnvironmentVariable(string name)
+        {
+            return Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Process) ??
+                   Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.User) ??
+                   Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Machine);
         }
     }
 }

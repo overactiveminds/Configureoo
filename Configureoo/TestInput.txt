@@ -1,3 +1,0 @@
-<CFGO>plaintext</CFGO>
-
-<CFGO default>plaintext</CFGO>

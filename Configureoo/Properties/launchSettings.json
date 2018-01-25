@@ -2,7 +2,7 @@
   "profiles": {
     "Configureoo": {
       "commandName": "Project",
-      "commandLineArgs": "encrypt -f TestInput.txt"
+      "commandLineArgs": "decrypt -f appsettings.json"
     }
   }
 }

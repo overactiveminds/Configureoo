@@ -11,6 +11,8 @@
     <PackageReleaseNotes>Beta</PackageReleaseNotes>
     <Copyright>Copyright 2017 (c) Overactiveminds Limited. All rights reserved.</Copyright>
     <PackageTags>configuration security encryption</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,12 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Configureoo.Core\Configureoo.Core.csproj" />
     <ProjectReference Include="..\Configureoo.KeyStore.EnvironmentVariables\Configureoo.KeyStore.EnvironmentVariables.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="TestInput.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

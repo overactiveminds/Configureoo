@@ -7,7 +7,7 @@ using Configureoo.Core.Parsing;
 
 namespace Configureoo.Core
 {
-    public class ConfigurationService
+    public class ConfigurationService : IConfigurationService
     {
         private readonly IParser _parser;
         private readonly IKeyStore _keyStore;
