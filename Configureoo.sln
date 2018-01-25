@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configureoo.VisualStudioToo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configureoo.JsonConfigurationProvider", "Configureoo.JsonConfigurationProvider\Configureoo.JsonConfigurationProvider.csproj", "{ED73AA47-2799-4645-A383-2161D826C86B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{EBED6CC1-501E-42E4-ADB8-BD066D41BF1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{3534F90F-2A81-413E-BBFB-BF7E3476F73D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,9 +49,16 @@ Global
 		{ED73AA47-2799-4645-A383-2161D826C86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED73AA47-2799-4645-A383-2161D826C86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED73AA47-2799-4645-A383-2161D826C86B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3534F90F-2A81-413E-BBFB-BF7E3476F73D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3534F90F-2A81-413E-BBFB-BF7E3476F73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3534F90F-2A81-413E-BBFB-BF7E3476F73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3534F90F-2A81-413E-BBFB-BF7E3476F73D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3534F90F-2A81-413E-BBFB-BF7E3476F73D} = {EBED6CC1-501E-42E4-ADB8-BD066D41BF1D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {614E8267-65A1-4349-BC34-3E53718C313C}

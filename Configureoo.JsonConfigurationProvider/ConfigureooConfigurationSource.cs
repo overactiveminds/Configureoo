@@ -6,6 +6,7 @@ namespace Configureoo.JsonConfigurationProvider
     {
         public override IConfigurationProvider Build(IConfigurationBuilder builder)
         {
+            EnsureDefaults(builder);
             return new ConfigureooConfigurationProvider(this);
         }
     }

@@ -7,7 +7,6 @@ using Configureoo.Core;
 using Configureoo.Core.Crypto.CryptoStrategies;
 using Configureoo.Core.Parsing;
 using Configureoo.KeyStore.EnvironmentVariables;
-using Microsoft.Extensions.Configuration.Json;
 using Newtonsoft.Json;
 
 namespace Configureoo.JsonConfigurationProvider
