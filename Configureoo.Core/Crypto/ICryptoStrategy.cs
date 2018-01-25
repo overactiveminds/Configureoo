@@ -5,5 +5,7 @@
         string Encrypt(string cipherText);
 
         string Decrypt(string cipherText);
+
+        string GenerateKey();
     }
 }

@@ -15,7 +15,7 @@ namespace Configureoo.UnitTests
         {
             // Arrange
             const string envVarsPrefix = "CONFIGUREOO_";
-            var keyGenerator = new EnvironmentVariableKeyGenerator(new RngRandomKeyGenerator(16));
+            var keyGenerator = new EnvironmentVariableKeyGenerator(new AesCryptoStrategy(string.Empty));
             var keyName = "somekeyname";
             var key = keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process, out var envVarName);
             string plainText = "<CFGO somekeyname>PlainText</CFGO>";
@@ -34,7 +34,7 @@ namespace Configureoo.UnitTests
         {
             // Arrange
             const string envVarsPrefix = "CONFIGUREOO_";
-            var keyGenerator = new EnvironmentVariableKeyGenerator(new RngRandomKeyGenerator(16));
+            var keyGenerator = new EnvironmentVariableKeyGenerator(new AesCryptoStrategy(string.Empty));
             var keyName = "somekeyname";
             var key = keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process, out var envVarName);
             string plainText = "|CFGO somekeyname|PlainText|/CFGO|";

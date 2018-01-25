@@ -55,8 +55,8 @@ namespace Configureoo
 
                 c.OnExecute(() =>
                 {
-                    var generator = new EnvironmentVariableKeyGenerator(new RngRandomKeyGenerator(128));
-                    string key = generator.Generate(EnvironmentVariablePrefix, keyName.Value(), EnvironmentVariableTarget.Machine, out var concatenatedKeyName);
+                    var generator = new EnvironmentVariableKeyGenerator(new AesCryptoStrategy(string.Empty));
+                    string key = generator.Generate(EnvironmentVariablePrefix, keyName.Value(), EnvironmentVariableTarget.User, out var concatenatedKeyName);
                     Console.WriteLine($"Environment Variable: {concatenatedKeyName} set to {key}");
                     return 0;
                 });

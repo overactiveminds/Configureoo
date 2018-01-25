@@ -76,5 +76,23 @@ namespace Configureoo.Core.Crypto.CryptoStrategies
                 }
             }
         }
+
+        public string GenerateKey()
+        {
+            const int length = 16;
+            char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            byte[] data;
+            using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
+            {
+                data = new byte[length];
+                crypto.GetNonZeroBytes(data);
+            }
+            StringBuilder result = new StringBuilder(length);
+            foreach (byte b in data)
+            {
+                result.Append(chars[b % (chars.Length)]);
+            }
+            return result.ToString();
+        }
     }
 }

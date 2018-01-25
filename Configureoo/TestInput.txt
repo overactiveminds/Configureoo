@@ -1,5 +1,3 @@
-CONFIGUREOO("someplaintextvalue1")
+<CFGO>plaintext</CFGO>
 
-CONFIGUREOO("someplaintextvalue2","default")
-
-CONFIGUREOO("someplaintextvalue3", "default")
+<CFGO default>plaintext</CFGO>

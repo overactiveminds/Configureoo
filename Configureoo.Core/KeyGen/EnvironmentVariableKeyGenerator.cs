@@ -1,20 +1,21 @@
 ﻿using System;
+using Configureoo.Core.Crypto;
 
 namespace Configureoo.Core.KeyGen
 {
     public class EnvironmentVariableKeyGenerator
     {
-        public IRandomKeyGenerator RandomKeyGenerator { get; }
+        private readonly ICryptoStrategy _cryptoStrategy;
 
-        public EnvironmentVariableKeyGenerator(IRandomKeyGenerator randomKeyGenerator)
+        public EnvironmentVariableKeyGenerator(ICryptoStrategy cryptoStrategy)
         {
-            RandomKeyGenerator = randomKeyGenerator;
+            _cryptoStrategy = cryptoStrategy;
         }
 
         public string Generate(string environmentVariablePrefix, string keyName, EnvironmentVariableTarget target, out string concatenatedKeyName)
         {
             concatenatedKeyName = environmentVariablePrefix + keyName;
-            string key = RandomKeyGenerator.GenerateRandomKey();
+            string key = _cryptoStrategy.GenerateKey();
             Environment.SetEnvironmentVariable(concatenatedKeyName, key, target);
             return key;
         }

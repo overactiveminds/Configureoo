@@ -1,4 +1,5 @@
 ﻿using System;
+using Configureoo.Core.Crypto;
 using Configureoo.Core.KeyGen;
 using Moq;
 using NUnit.Framework;
@@ -16,8 +17,8 @@ namespace Configureoo.UnitTests.KeyGen
             var expectedKeyName = "SomeKey";
             var expectedPrefix = "Prefix";
             var expectedConcatenatedKeyName = "PrefixSomeKey";
-            var mockRandomGenerator = new Mock<IRandomKeyGenerator>();
-            mockRandomGenerator.Setup(x => x.GenerateRandomKey())
+            var mockRandomGenerator = new Mock<ICryptoStrategy>();
+            mockRandomGenerator.Setup(x => x.GenerateKey())
                 .Returns(expectedKeyValue);
 
             var sut = new EnvironmentVariableKeyGenerator(mockRandomGenerator.Object);
