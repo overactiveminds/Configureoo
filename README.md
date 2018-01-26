@@ -32,7 +32,7 @@ Results in a file similar to:
 
 ```Json
 {
-  "someSensitiveValue": "<CFGO>adasdadasdsawqeqwewqewqewqeqwewqe</CFGO>"
+  "someSensitiveValue": "<CFGO>XFgySLm78ezB3OTwbNp1fpTnLN2ewI+SnPVQZqTxxd6GlTwL/UhDiJnALc5eGcHN</CFGO>"
 }
 ```
 
