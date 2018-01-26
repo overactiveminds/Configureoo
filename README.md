@@ -14,9 +14,9 @@ In a nutshell, you first setup a key and store that key in an environment variab
 Configureoo -k default
 ```
 
-You can then enter values into a configuration file (e.g. appsettings.json) in the Configuroo format for example:
+This command will create a 128 bit random key and store it in the environment variable CONFIGUREOO_default. You can then enter values into a configuration file (e.g. appsettings.json) in the Configuroo format for example:
 
-```Shell
+```Json
 {
   "someSensitiveValue": "<CFGO>some private key</CFGO>"
 }
@@ -28,5 +28,15 @@ Then invoking:
 Configureoo encrypt -f appsettings.json
 ```
 
-Your values will then have been encrypted within the file using AES - you can then commit this file to source control.  Decrytping the data is acheived by first setting the same environment variable on the box / image / server running your dependent code and then load it via the Overactiveminds.Configureoo.JsonConfigurationProvider.  Simply call the AddConfigureooJsonFile extension method when initializing configuration instead of the normal AddJsonFile and Configureoo will decrypt the sensitive values and pesetn them to your application in plain text.
+Results in a file similar to:
+
+```Json
+{
+  "someSensitiveValue": "<CFGO>adasdadasdsawqeqwewqewqewqeqwewqe</CFGO>"
+}
+```
+
+You can then commit this file to source control.  
+
+Decrytping the data is acheived by first setting the same environment variable on the box / image / server running your dependent code and then load it via the Overactiveminds.Configureoo.JsonConfigurationProvider.  Simply call the AddConfigureooJsonFile extension method when initializing configuration instead of the normal AddJsonFile and Configureoo will decrypt the sensitive values and present them to your application in via normal configuration.
 
