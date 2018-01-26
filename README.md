@@ -10,7 +10,7 @@ As the DevOps community move towards source control as the single source of trut
 
 In a nutshell, you first setup a key and store that key in an environment variable by invoking:
 
-```Shell
+```bash
 Configureoo -k default
 ```
 
@@ -24,7 +24,7 @@ This command will create a 128 bit random key and store it in the environment va
 
 Then invoking:
 
-```Shell
+```bash
 Configureoo encrypt -f appsettings.json
 ```
 
