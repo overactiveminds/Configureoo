@@ -18,7 +18,7 @@ namespace Configureoo.UnitTests
             var keyGenerator = new EnvironmentVariableKeyGenerator(new AesCryptoStrategy(string.Empty));
             var keyName = "somekeyname";
             keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
-            string plainText = "<CFGO somekeyname>PlainText</CFGO>";
+            string plainText = "<CFGO somekeyname>Hello World From Configureoo!!!!</CFGO>";
             var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), new AesCryptoStrategyFactory());
 
             // Act

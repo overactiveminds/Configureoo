@@ -10,7 +10,7 @@ namespace ConsoleApp
         {
             SetDemoKeyDontEverDoThis();
 
-            IConfigurationRoot configuration = new ConfigurationBuilder()
+            var configuration = new ConfigurationBuilder()
                 .AddConfigureooJsonFile("appsettings.json")
                 .Build();
 
