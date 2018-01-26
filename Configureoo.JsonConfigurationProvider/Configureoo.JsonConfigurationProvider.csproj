@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 	<PackageId>Overactiveminds.Configureoo.JsonConfigurationProvider</PackageId>
-    <PackageVersion>0.0.1-alpha</PackageVersion>
     <Authors>Overactiveminds Limited</Authors>
     <Description>Provides easy config encryption using AES</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

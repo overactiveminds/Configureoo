@@ -4,7 +4,6 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net47;netcoreapp2.0</TargetFrameworks>
 	<PackageId>Configureoo.Overactiveminds</PackageId>
-    <PackageVersion>0.0.1-alpha</PackageVersion>
     <Authors>Overactiveminds Limited</Authors>
     <Description>Provides easy config encryption using AES</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
