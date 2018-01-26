@@ -18,7 +18,8 @@ This command will create a 128 bit random key and store it in the environment va
 
 ```JSON
 {
-  "someSensitiveValue": "<CFGO>some private key</CFGO>"
+  "someSensitiveValue": "<CFGO>some private key</CFGO>",
+  "someNonSensitiveValue": "Some other value"
 }
 ```
 
@@ -32,7 +33,8 @@ Results in a file similar to:
 
 ```Json
 {
-  "someSensitiveValue": "<CFGO>XFgySLm78ezB3OTwbNp1fpTnLN2ewI+SnPVQZqTxxd6GlTwL/UhDiJnALc5eGcHN</CFGO>"
+  "someSensitiveValue": "<CFGO>XFgySLm78ezB3OTwbNp1fpTnLN2ewI+SnPVQZqTxxd6GlTwL/UhDiJnALc5eGcHN</CFGO>",
+  "someNonSensitiveValue": "Some other value"
 }
 ```
 
