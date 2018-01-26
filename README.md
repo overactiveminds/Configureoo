@@ -16,7 +16,7 @@ Configureoo -k default
 
 This command will create a 128 bit random key and store it in the environment variable CONFIGUREOO_default. You can then enter values into a configuration file (e.g. appsettings.json) in the Configuroo format for example:
 
-```Json
+```JSON
 {
   "someSensitiveValue": "<CFGO>some private key</CFGO>"
 }
