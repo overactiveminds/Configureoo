@@ -60,3 +60,18 @@ And commit the change.
 
 Yes - in fact there's already an experimental Visual Studio Plugin that allows you to simply right click on a file in Solution Explorer and select "Configureoo -> Encrypt / Decrypt" so you can make changes to sensitive values whilst editing code.
 
+## Are there any binaries?
+
+Yes, we're currently publishing the alpha packages to nuget, grab them from here:
+
+https://www.nuget.org/packages/Overactiveminds.Configureoo/
+
+https://www.nuget.org/packages/Overactiveminds.Configureoo.Core/
+
+https://www.nuget.org/packages/Overactiveminds.Configureoo.JsonConfigurationProvider/
+
+https://www.nuget.org/packages/Overactiveminds.Configureoo.KeyStore.EnvironmentVariables/
+
+
+
+
