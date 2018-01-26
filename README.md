@@ -57,3 +57,4 @@ And commit the change.
 ## Sounds like a pain, can it be made any easier?
 
 Yes - in fact there's already an experimental Visual Studio Plugin that allows you to simply right click on a file in Solution Explorer and select "Configureoo -> Encrypt / Decrypt" so you can make changes to sensitive values whilst editing code.
+
