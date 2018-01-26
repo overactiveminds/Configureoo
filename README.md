@@ -40,3 +40,20 @@ You can then commit this file to source control.
 
 Decrytping the data is acheived by first setting the same environment variable on the box / image / server running your dependent code and then load it via the Overactiveminds.Configureoo.JsonConfigurationProvider.  Simply call the AddConfigureooJsonFile extension method when initializing configuration instead of the normal AddJsonFile and Configureoo will decrypt the sensitive values and present them to your application in via normal configuration.
 
+When it's time to edit the sensitive value, simply call:
+
+```bash
+Configureoo decrypt -f appsettings.json
+```
+
+Make your edit, then call:
+
+```bash
+Configureoo encrypt -f appsettings.json
+```
+
+And commit the change.
+
+## Sounds like a pain, can it be made any easier?
+
+Yes - in fact there's already an experimental Visual Studio Plugin that allows you to simply right click on a file in Solution Explorer and select "Configureoo -> Encrypt / Decrypt" so you can make changes to sensitive values whilst editing code.
