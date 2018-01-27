@@ -6,6 +6,7 @@
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
 	<PackageId>Overactiveminds.Configureoo.Core</PackageId>
     <Authors>Overactiveminds Limited</Authors>
+	<projectUrl>https://github.com/overactiveminds/Configureoo</projectUrl>
     <Description>Provides easy config encryption using AES</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>Beta</PackageReleaseNotes>

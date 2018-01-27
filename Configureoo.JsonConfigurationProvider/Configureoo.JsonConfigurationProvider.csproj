@@ -4,7 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 	<PackageId>Overactiveminds.Configureoo.JsonConfigurationProvider</PackageId>
     <Authors>Overactiveminds Limited</Authors>
-    <Description>Provides easy config encryption using AES</Description>
+	<projectUrl>https://github.com/overactiveminds/Configureoo</projectUrl>
+    <Description>Enables Configureoo to work with Microsoft.Extensions.Configuration</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>Beta</PackageReleaseNotes>
     <Copyright>Copyright 2017 (c) Overactiveminds Limited. All rights reserved.</Copyright>
