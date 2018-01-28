@@ -12,7 +12,8 @@ $WarningPreference = "Stop"
 #
 # Build
 #
-msbuild .\src\Configureoo.sln /p:Configureation=Release /t:Rebuild /verbosity:m
+
+msbuild .\src\Configureoo.sln /p:Configuration=Release /t:Rebuild
 
 #
 # Run Tests
