@@ -7,12 +7,12 @@ $WarningPreference = "Stop"
 #
 # Build
 #
-msbuild .\src\Configureoo.sln /p:Configureation=Release /t:Restore ReBuild
+msbuild .\src\Configureoo.sln /p:Configureation=Release /t:Restore /t:Clean /t:Build /verbosity:m
 
 #
 # Run Tests
 #
-dotnet test --no-build .\src\Configureoo.UnitTests\Configureoo.UnitTests.csproj --configuration=Release --verbosity=Detailed
+dotnet test --no-build .\src\Configureoo.UnitTests\Configureoo.UnitTests.csproj --configuration=Release
 
 #
 # Create Artifacts
