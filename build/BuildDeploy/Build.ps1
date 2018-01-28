@@ -18,7 +18,10 @@ msbuild .\src\Configureoo.sln /p:Configuration=Release /t:Rebuild
 #
 # Run Tests
 #
+
+##teamcity[testSuiteStarted name='UnitTests']
 dotnet test --no-build .\src\Configureoo.UnitTests\Configureoo.UnitTests.csproj --configuration=Release
+##teamcity[testSuiteFinished name='UnitTests']
 
 #
 # Create Artifacts
