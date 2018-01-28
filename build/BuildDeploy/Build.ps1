@@ -5,9 +5,14 @@
 $ErrorActionPreference = "Stop"
 $WarningPreference = "Stop"
 #
+# Restore NuGet packages
+#
+.\lib\nuget\nuget.exe restore .\src\Configureoo.sln
+
+#
 # Build
 #
-msbuild .\src\Configureoo.sln /p:Configureation=Release /t:Restore /t:Clean /t:Build /verbosity:m
+msbuild .\src\Configureoo.sln /p:Configureation=Release /t:Rebuild /verbosity:m
 
 #
 # Run Tests
