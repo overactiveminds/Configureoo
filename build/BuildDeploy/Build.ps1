@@ -2,9 +2,8 @@
     [Parameter(Mandatory=$true)]
 	[string]$version
  )
-
-
-
+$ErrorActionPreference = "Stop"
+$WarningPreference = "Stop"
 #
 # Build
 #
