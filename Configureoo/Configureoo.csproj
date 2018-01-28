@@ -48,13 +48,13 @@ And commit the change.
 
 Sounds like a pain, can it be made any easier?
 
-Yes - in fact there's already an experimental Visual Studio Plugin that allows you to simply right click on a file in Solution Explorer and select "Configureoo -> Encrypt / Decrypt" so you can make changes to sensitive values whilst editing code.
+Yes - in fact there's already an experimental Visual Studio Plugin that allows you to simply right click on a file in Solution Explorer and select "Configureoo -&gt; Encrypt / Decrypt" so you can make changes to sensitive values whilst editing code.
 	</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Copyright>Copyright 2017 (c) Overactiveminds Limited. All rights reserved.</Copyright>
     <PackageTags>configuration security encryption</PackageTags>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
