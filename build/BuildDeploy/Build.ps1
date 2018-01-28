@@ -3,10 +3,12 @@
 	[string]$version
  )
 
+
+
 #
 # Build
 #
-msbuild .\src\Configureoo.sln /p:Configureation=Release
+msbuild .\src\Configureoo.sln /p:Configureation=Release /t:Restore ReBuild
 
 #
 # Run Tests
