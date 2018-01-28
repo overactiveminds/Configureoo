@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
-using System.Globalization;
 using System.Linq;
 using Configureoo.Core;
 using Configureoo.Core.Crypto.CryptoStrategies;
@@ -10,7 +9,6 @@ using Configureoo.KeyStore.EnvironmentVariables;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Configureoo.VisualStudioTools
 {
@@ -61,9 +59,6 @@ namespace Configureoo.VisualStudioTools
 
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "Command2";
-
             var selectedItems = ((UIHierarchy)((DTE2)this.ServiceProvider.GetService(typeof(DTE))).Windows.Item("{3AE79031-E1BC-11D0-8F78-00A0C9110057}").Object).SelectedItems as object[];
             if (selectedItems == null) return;
 
