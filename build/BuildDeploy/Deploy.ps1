@@ -14,16 +14,9 @@ $nugetApiKey = .\src\Configureoo\bin\Release\net47\Configureoo decryptvalue -k n
 $githubToken = .\src\Configureoo\bin\Release\net47\Configureoo decryptvalue -k nuget -ct $githubApiKeyCipherText
 
 #
-# Publish NuGet Packages
-#
-.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.Core.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
-.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.JsonConfigurationProvider.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
-.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.KeyStore.EnvironmentVariables.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
-
-#
 # Create Release on github and upload binaries
 #
-export GITHUB_TOKEN=$githubToken
+$env:GITHUB_TOKEN=$githubToken
 
 git tag $version
 git push orign $version
@@ -34,3 +27,10 @@ git push orign $version
 .\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-net47.zip" --file .\build\artifacts\Configureoo-$version-net47.zip
 .\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-netcore2.0.tgz" --file .\build\artifacts\Configureoo-$version-netcore2.0.tgz
 .\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-netcore2.0.zip" --file .\build\artifacts\Configureoo-$version-netcore2.0.zip
+
+#
+# Publish NuGet Packages
+#
+.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.Core.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
+.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.JsonConfigurationProvider.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
+.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.KeyStore.EnvironmentVariables.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
