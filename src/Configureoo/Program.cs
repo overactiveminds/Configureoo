@@ -1,6 +1,6 @@
 ﻿using System;
-using System.CodeDom;
 using System.IO;
+using System.Linq;
 using Configureoo.Core;
 using Configureoo.Core.Crypto.CryptoStrategies;
 using Configureoo.Core.KeyGen;
@@ -78,6 +78,69 @@ namespace Configureoo
                     Console.WriteLine($"Environment Variable: {key.EnvironmentVariableName} set to {key.Key}");
                     return 0;
                 });
+            });
+
+
+            app.Command("decryptvalue", c =>
+            {
+                var cipherTextOption = c.Option("-ct", "The plain (untagged) ciphertext", CommandOptionType.SingleValue);
+                var keyNameOption = c.Option("-k", "The name of the key, defaults to \"default\"",
+                    CommandOptionType.SingleValue);
+
+                c.OnExecute(() =>
+                {
+                    if (!cipherTextOption.HasValue())
+                    {
+                        c.ShowHelp("decryptvalue");
+                        return 1;
+                    }
+
+                    string keyName = keyNameOption.HasValue() ? keyNameOption.Value() : "default";
+                    var keyStore = new EnvironmentVariablesKeyStore(EnvironmentVariablePrefix);
+                    var factory = new AesCryptoStrategyFactory();
+                    var keys = keyStore.Get(new[] {keyName}, factory).ToArray();
+
+                    if (!keys.Any())
+                    {
+                        Console.Error.WriteLine(
+                            $"Could not find key named {keyName}, have you set the environment variable {EnvironmentVariablePrefix}{keyName}?");
+                    }
+
+                    var crypto = keys[0].CryptoStrategy;
+                    Console.WriteLine(crypto.Decrypt(cipherTextOption.Value()));
+                    return 0;
+                });
+            });
+
+
+            app.Command("encryptvalue", c =>
+            {
+                var cipherTextOption = c.Option("-pt", "The plain text to encrypt", CommandOptionType.SingleValue);
+                var keyNameOption = c.Option("-k", "The name of the key, defaults to \"default\"", CommandOptionType.SingleValue);
+
+                c.OnExecute(() =>
+                {
+                    if (!cipherTextOption.HasValue())
+                    {
+                        c.ShowHelp("encryptvalue");
+                        return 1;
+                    }
+
+                    string keyName = keyNameOption.HasValue() ? keyNameOption.Value() : "default";
+                    var keyStore = new EnvironmentVariablesKeyStore(EnvironmentVariablePrefix);
+                    var factory = new AesCryptoStrategyFactory();
+                    var keys = keyStore.Get(new[] { keyName }, factory).ToArray();
+
+                    if (!keys.Any())
+                    {
+                        Console.Error.WriteLine($"Could not find key named {keyName}, have you set the environment variable {EnvironmentVariablePrefix}{keyName}?");
+                    }
+
+                    var crypto = keys[0].CryptoStrategy;
+                    Console.WriteLine(crypto.Encrypt(cipherTextOption.Value()));
+                    return 0;
+                });
+
             });
 
             app.Execute(args);
