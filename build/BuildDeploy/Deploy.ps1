@@ -19,7 +19,7 @@ $githubToken = .\src\Configureoo\bin\Release\net47\Configureoo decryptvalue -k n
 $env:GITHUB_TOKEN=$githubToken
 
 git tag $version
-git push orign $version
+git push origin $version
 
 .\lib\github-release\github-release.exe release --user overactiveminds --repo Configureoo --tag $version --name $version --description "Automated release of version $version from Deploy.ps1" --pre-release
 
