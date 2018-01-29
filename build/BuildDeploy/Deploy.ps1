@@ -23,5 +23,14 @@ $githubToken = .\src\Configureoo\bin\Release\net47\Configureoo decryptvalue -k n
 #
 # Create Release on github and upload binaries
 #
+export GITHUB_TOKEN=$githubToken
+
 git tag $version
 git push orign $version
+
+.\lib\github-release\github-release.exe release --user overactiveminds --repo Configureoo --tag $version --name $version --description "Automated release of version $version from Deploy.ps1" --pre-release
+
+# Upload our binaries
+.\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-net47.zip" --file .\build\artifacts\Configureoo-$version-net47.zip
+.\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-netcore2.0.tgz" --file .\build\artifacts\Configureoo-$version-netcore2.0.tgz
+.\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-netcore2.0.zip" --file .\build\artifacts\Configureoo-$version-netcore2.0.zip
