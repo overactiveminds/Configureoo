@@ -5,8 +5,6 @@ param (
 $ErrorActionPreference = "Stop"
 $WarningPreference = "Stop"
 
-ssh git@github.com
-
 #
 # Use Configureoo to decrypt our keys
 #
