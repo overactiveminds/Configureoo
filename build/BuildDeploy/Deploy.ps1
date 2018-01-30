@@ -21,7 +21,7 @@ $env:GITHUB_TOKEN=$githubToken
 git tag $version
 git push origin $version
 
-.\lib\github-release\github-release.exe release --user overactiveminds --repo Configureoo --tag $version --name $version --description "Automated release of version $version from Deploy.ps1" --pre-release
+##.\lib\github-release\github-release.exe release --user overactiveminds --repo Configureoo --tag $version --name $version --description "Automated release of version $version from Deploy.ps1" --pre-release
 
 # Upload our binaries
 .\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-net47.zip" --file .\build\artifacts\Configureoo-$version-net47.zip
@@ -31,6 +31,6 @@ git push origin $version
 #
 # Publish NuGet Packages
 #
-.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.Core.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
-.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.JsonConfigurationProvider.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
-.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.KeyStore.EnvironmentVariables.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
+##.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.Core.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
+##.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.JsonConfigurationProvider.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
+##.\lib\nuget\nuget.exe push .\build\artifacts\Overactiveminds.Configureoo.KeyStore.EnvironmentVariables.$version.nupkg -ApiKey $nugetApiKey -Source https://api.nuget.org/v3/index.json
