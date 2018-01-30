@@ -11,13 +11,13 @@ namespace Configureoo.Core.Crypto
             _namedKeys = namedKeys;
         }
 
-        public IEnumerable<CryptoKey> Get(IEnumerable<string> keys, ICryptoStrategyFactory factory)
+        public IEnumerable<CryptoKey> Get(IEnumerable<string> keys)
         {
             var allKeys = new List<CryptoKey>();
             foreach (var key in keys)
             {
                 allKeys.Add(_namedKeys.TryGetValue(key, out var storedKey)
-                    ? new CryptoKey(key, true, factory.CreateFromRawKey(storedKey))
+                    ? new CryptoKey(key, true, storedKey)
                     : new CryptoKey(key, false, null));
             }
             return allKeys;

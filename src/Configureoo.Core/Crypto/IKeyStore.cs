@@ -4,6 +4,6 @@ namespace Configureoo.Core.Crypto
 {
     public interface IKeyStore
     {
-        IEnumerable<CryptoKey> Get(IEnumerable<string> keys, ICryptoStrategyFactory factory);
+        IEnumerable<CryptoKey> Get(IEnumerable<string> keys);
     }
 }

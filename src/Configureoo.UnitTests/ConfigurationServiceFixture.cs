@@ -15,11 +15,12 @@ namespace Configureoo.UnitTests
         {
             // Arrange
             const string envVarsPrefix = "CONFIGUREOO_";
-            var keyGenerator = new EnvironmentVariableKeyGenerator(new AesCryptoStrategy(string.Empty));
+            var crypto = new AesCryptoStrategy();
+            var keyGenerator = new EnvironmentVariableKeyGenerator(crypto);
             var keyName = "somekeyname";
             keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
             string plainText = "<CFGO somekeyname>Hello World From Configureoo!!!!</CFGO>";
-            var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), new AesCryptoStrategyFactory());
+            var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), crypto);
 
             // Act
             string cipherText = sut.EncryptForStorage(plainText);
@@ -34,11 +35,12 @@ namespace Configureoo.UnitTests
         {
             // Arrange
             const string envVarsPrefix = "CONFIGUREOO_";
-            var keyGenerator = new EnvironmentVariableKeyGenerator(new AesCryptoStrategy(string.Empty));
+            var crypto = new AesCryptoStrategy();
+            var keyGenerator = new EnvironmentVariableKeyGenerator(crypto);
             var keyName = "somekeyname";
             keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
             string plainText = "|CFGO somekeyname|PlainText|/CFGO|";
-            var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), new AesCryptoStrategyFactory());
+            var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), crypto);
 
             // Act
             string cipherText = sut.EncryptForStorage(plainText);
@@ -53,12 +55,13 @@ namespace Configureoo.UnitTests
         {
             // Arrange
             const string envVarsPrefix = "CONFIGUREOO_";
-            var keyGenerator = new EnvironmentVariableKeyGenerator(new AesCryptoStrategy(string.Empty));
+            var crypto = new AesCryptoStrategy();
+            var keyGenerator = new EnvironmentVariableKeyGenerator(crypto);
             var keyName = "somekeyname";
             keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
             string plainText = "<CFGO somekeyname>PlainText</CFGO>";
             string expectedText = "PlainText";
-            var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), new AesCryptoStrategyFactory());
+            var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), crypto);
 
             // Act
             string cipherText = sut.EncryptForStorage(plainText);

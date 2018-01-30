@@ -66,7 +66,7 @@ namespace Configureoo.VisualStudioTools
                 where (t as UIHierarchyItem)?.Object is ProjectItem
                 select ((ProjectItem) ((UIHierarchyItem) t).Object).FileNames[1]).ToList();
 
-            var service = new ConfigurationFileService(new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(), new AesCryptoStrategyFactory()));
+            var service = new ConfigurationFileService(new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(), new AesCryptoStrategy()));
             service.Encrypt(files);
         }
     }

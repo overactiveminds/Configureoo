@@ -6,13 +6,13 @@
 
         public bool Exists { get; }
 
-        public ICryptoStrategy CryptoStrategy { get; }
+        public string Key { get; }
 
-        public CryptoKey(string name, bool exists, ICryptoStrategy strategy)
+        public CryptoKey(string name, bool exists, string key)
         {
             Name = name;
             Exists = exists;
-            CryptoStrategy = strategy;
+            Key = key;
         }
     }
 }

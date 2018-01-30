@@ -11,13 +11,13 @@ namespace Configureoo.Core
     {
         private readonly IParser _parser;
         private readonly IKeyStore _keyStore;
-        private readonly ICryptoStrategyFactory _keyFactory;
+        private readonly ICryptoStrategy _cryptoStrategy;
 
-        public ConfigurationService(IParser parser, IKeyStore keyStore, ICryptoStrategyFactory keyFactory)
+        public ConfigurationService(IParser parser, IKeyStore keyStore, ICryptoStrategy cryptoStrategy)
         {
             _parser = parser;
             _keyStore = keyStore;
-            _keyFactory = keyFactory;
+            _cryptoStrategy = cryptoStrategy;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Configureoo.Core
                 return source;
             }
 
-            var keys = _keyStore.Get(tags.Select(y => y.KeyName).Distinct(), _keyFactory)
+            var keys = _keyStore.Get(tags.Select(y => y.KeyName).Distinct())
                 .ToDictionary(x => x.Name);
 
             var missingKeys = keys.Values.Where(x => !x.Exists).Select(x => x.Name).ToList();
@@ -75,7 +75,7 @@ namespace Configureoo.Core
             {
                 writer.Write(source.Substring(currentChar, tag.Index - currentChar));
                 var key = keys[tag.KeyName];
-                string text = encrypt ? key.CryptoStrategy.Encrypt(tag.Text) : key.CryptoStrategy.Decrypt(tag.Text);
+                string text = encrypt ? _cryptoStrategy.Encrypt(tag.Text, key.Key) : _cryptoStrategy.Decrypt(tag.Text, key.Key);
                 writer.Write(GetTag(tag, text, includeTags));
                 currentChar = tag.Index + tag.Length;
             }

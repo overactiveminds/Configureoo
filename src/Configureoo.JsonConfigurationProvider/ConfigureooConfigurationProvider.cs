@@ -27,7 +27,7 @@ namespace Configureoo.JsonConfigurationProvider
                 source = reader.ReadToEnd();
             }
 
-            ConfigurationService service = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(), new AesCryptoStrategyFactory());
+            ConfigurationService service = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(), new AesCryptoStrategy());
             source = service.DecryptForLoad(source);
 
             using (var memStream = new MemoryStream(Encoding.Default.GetBytes(source)))
@@ -40,16 +40,14 @@ namespace Configureoo.JsonConfigurationProvider
                 catch (JsonReaderException e)
                 {
                     string errorLine = string.Empty;
-                    if (stream.CanSeek)
-                    {
-                        stream.Seek(0, SeekOrigin.Begin);
+                    if (!stream.CanSeek)
+                        throw new FormatException(string.Format("Could not parse the JSON file. Error on line number '{0}': '{1}'.", e.LineNumber, errorLine), e);
+                    stream.Seek(0, SeekOrigin.Begin);
 
-                        IEnumerable<string> fileContent;
-                        using (var streamReader = new StreamReader(stream))
-                        {
-                            fileContent = ReadLines(streamReader);
-                            errorLine = RetrieveErrorContext(e, fileContent);
-                        }
+                    using (var streamReader = new StreamReader(stream))
+                    {
+                        var fileContent = ReadLines(streamReader);
+                        errorLine = RetrieveErrorContext(e, fileContent);
                     }
                     throw new FormatException(string.Format("Could not parse the JSON file. Error on line number '{0}': '{1}'.", e.LineNumber, errorLine), e);
                 }
