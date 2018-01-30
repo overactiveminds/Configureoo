@@ -2,9 +2,9 @@
 {
     public interface ICryptoStrategy
     {
-        string Encrypt(string cipherText);
+        string Encrypt(string cipherText, string key);
 
-        string Decrypt(string cipherText);
+        string Decrypt(string cipherText, string key);
 
         string GenerateKey();
     }

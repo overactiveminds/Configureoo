@@ -7,20 +7,13 @@ namespace Configureoo.Core.Crypto.CryptoStrategies
 {
     public class AesCryptoStrategy : ICryptoStrategy
     {
-        private readonly string _keyString;
-
-        public AesCryptoStrategy(string keyString)
+        public string Encrypt(string plainText, string key)
         {
-            _keyString = keyString;
-        }
-        public string Encrypt(string plainText)
-        {
-            var key = Encoding.UTF8.GetBytes(_keyString);
-
+            var encodedKey = Encoding.UTF8.GetBytes(key);
 
             using (var aesAlg = Aes.Create())
             {
-                using (var encryptor = aesAlg.CreateEncryptor(key, aesAlg.IV))
+                using (var encryptor = aesAlg.CreateEncryptor(encodedKey, aesAlg.IV))
                 {
                     using (var msEncrypt = new MemoryStream())
                     {
@@ -45,7 +38,7 @@ namespace Configureoo.Core.Crypto.CryptoStrategies
             }
         }
 
-        public string Decrypt(string cipherText)
+        public string Decrypt(string cipherText, string key)
         {
             var fullCipher = Convert.FromBase64String(cipherText);
 
@@ -54,11 +47,11 @@ namespace Configureoo.Core.Crypto.CryptoStrategies
 
             Buffer.BlockCopy(fullCipher, 0, iv, 0, iv.Length);
             Buffer.BlockCopy(fullCipher, iv.Length, cipher, 0, fullCipher.Length - iv.Length);
-            var key = Encoding.UTF8.GetBytes(_keyString);
+            var encodedKey = Encoding.UTF8.GetBytes(key);
 
             using (var aesAlg = Aes.Create())
             {
-                using (var decryptor = aesAlg.CreateDecryptor(key, iv))
+                using (var decryptor = aesAlg.CreateDecryptor(encodedKey, iv))
                 {
                     string result;
                     using (var msDecrypt = new MemoryStream(cipher))

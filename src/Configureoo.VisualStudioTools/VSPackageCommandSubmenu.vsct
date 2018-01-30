@@ -31,10 +31,18 @@
           <ButtonText>Decrypt</ButtonText>
         </Strings>
       </Button>
+      <Button guid="guidVSPackageCommandSubmenuCmdSet" id="cmdidConfigureooToolWindowCommand" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
+        <Icon guid="guidImages1" id="bmpPic1" />
+        <Strings>
+          <ButtonText>ConfigureooToolWindow</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
 
     <Bitmaps>
       <Bitmap guid="guidImages" href="Resources\Commands.png" usedList="bmpPic1, bmpPic2" />
+      <Bitmap guid="guidImages1" href="Resources\ConfigureooToolWindowCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
     </Bitmaps>
   </Commands>
 
@@ -48,23 +56,23 @@
       -->
     <CommandPlacement guid="guidVSPackageCommandSubmenuCmdSet" id="MyGroupForSubmenu" priority="0xFFFF">
       <!-- The parent of the group will be the solution context menu -->
-      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE" />
     </CommandPlacement>
     <CommandPlacement guid="guidVSPackageCommandSubmenuCmdSet" id="MySubmenu" priority="0x0001">
-      <Parent guid="guidVSPackageCommandSubmenuCmdSet" id="MyGroupForSubmenu"/>
+      <Parent guid="guidVSPackageCommandSubmenuCmdSet" id="MyGroupForSubmenu" />
     </CommandPlacement>
     <CommandPlacement guid="guidVSPackageCommandSubmenuCmdSet" id="MyGroupForCommands" priority="0x0001">
-      <Parent guid="guidVSPackageCommandSubmenuCmdSet" id="MySubmenu"/>
+      <Parent guid="guidVSPackageCommandSubmenuCmdSet" id="MySubmenu" />
     </CommandPlacement>
 
     <!-- Placement for commands.
            The parent of a command is always a group, never a menu, context menu or toolbar.
       -->
-    <CommandPlacement guid="guidVSPackageCommandSubmenuCmdSet" id="Command1Id" priority="0x0001" >
-      <Parent guid="guidVSPackageCommandSubmenuCmdSet" id="MyGroupForCommands"/>
+    <CommandPlacement guid="guidVSPackageCommandSubmenuCmdSet" id="Command1Id" priority="0x0001">
+      <Parent guid="guidVSPackageCommandSubmenuCmdSet" id="MyGroupForCommands" />
     </CommandPlacement>
-    <CommandPlacement guid="guidVSPackageCommandSubmenuCmdSet" id="Command2Id" priority="0x0002" >
-      <Parent guid="guidVSPackageCommandSubmenuCmdSet" id="MyGroupForCommands"/>
+    <CommandPlacement guid="guidVSPackageCommandSubmenuCmdSet" id="Command2Id" priority="0x0002">
+      <Parent guid="guidVSPackageCommandSubmenuCmdSet" id="MyGroupForCommands" />
     </CommandPlacement>
   </CommandPlacements>
 
@@ -78,6 +86,7 @@
       <!-- Warning!!: Keep the values in sync with the code in Command1.cs, Command2.cs -->
       <IDSymbol name="Command1Id" value="0x0101" />
       <IDSymbol name="Command2Id" value="0x0102" />
+      <IDSymbol value="4130" name="cmdidConfigureooToolWindowCommand" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{a156b47b-df48-4124-a918-ae1cd9492fcb}">
@@ -85,5 +94,14 @@
       <IDSymbol name="bmpPic2" value="2" />
     </GuidSymbol>
 
+  
+    <GuidSymbol value="{cf532c84-8575-4fd9-8bba-0bd11a0860da}" name="guidImages1">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
   </Symbols>
 </CommandTable>

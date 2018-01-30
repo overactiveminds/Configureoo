@@ -14,6 +14,7 @@ namespace Configureoo.VisualStudioTools
     [Guid(VSPackageCommandSubmenu.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideToolWindow(typeof(Configureoo.VisualStudioTools.ConfigureooToolWindow))]
     public sealed class VSPackageCommandSubmenu : Package
     {
         public const string PackageGuidString = "d2cc7f26-42fb-4c8d-858f-05f3fc3599d5";
@@ -27,6 +28,7 @@ namespace Configureoo.VisualStudioTools
             base.Initialize();
             EncryptCommand.Initialize(this);
             DecryptCommand.Initialize(this);
+            Configureoo.VisualStudioTools.ConfigureooToolWindowCommand.Initialize(this);
         }
     }
 }
