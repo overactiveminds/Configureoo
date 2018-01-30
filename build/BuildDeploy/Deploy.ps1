@@ -27,6 +27,7 @@ git push origin $version
 .\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-net47.zip" --file .\build\artifacts\Configureoo-$version-net47.zip
 .\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-netcore2.0.tgz" --file .\build\artifacts\Configureoo-$version-netcore2.0.tgz
 .\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo-$version-netcore2.0.zip" --file .\build\artifacts\Configureoo-$version-netcore2.0.zip
+.\lib\github-release\github-release.exe upload --user overactiveminds --repo Configureoo --tag $version --name "Configureoo.VisualStudioTools-$version.vsix" --file .\build\artifacts\Configureoo.VisualStudioTools-$version.vsix
 
 #
 # Publish NuGet Packages

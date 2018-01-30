@@ -35,4 +35,6 @@ dotnet pack --no-build .\src\Configureoo.KeyStore.EnvironmentVariables\Configure
 .\lib\7zip\7z a .\build\artifacts\Configureoo-$version-netcore2.0.tar .\src\Configureoo\bin\Release\netcoreapp2.0\*.* 
 .\lib\7zip\7z a .\build\artifacts\Configureoo-$version-netcore2.0.tgz .\build\artifacts\Configureoo-$version-netcore2.0.tar
 
+Copy-Item .\src\Configureoo.VisualStudioTools\bin\Release\Configureoo.VisualStudioTools.vsix .\build\artifacts\Configureoo.VisualStudioTools-$version.vsix
+
 Remove-Item .\build\artifacts\Configureoo-$version-netcore2.0.tar
