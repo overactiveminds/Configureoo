@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Configureoo.Core.Crypto;
 
@@ -11,6 +12,13 @@ namespace Configureoo.KeyStore.EnvironmentVariables
         public EnvironmentVariablesKeyStore(string namePrefix = "CONFIGUREOO_")
         {
             _namePrefix = namePrefix;
+        }
+
+        public void Add(CryptoKey key)
+        {
+            string envName = _namePrefix + key.Name;
+            Environment.SetEnvironmentVariable(envName, key.Key, EnvironmentVariableTarget.Process);
+            Environment.SetEnvironmentVariable(envName, key.Key, EnvironmentVariableTarget.User);
         }
 
         public IEnumerable<CryptoKey> Get(IEnumerable<string> keys)
@@ -27,11 +35,37 @@ namespace Configureoo.KeyStore.EnvironmentVariables
             return allKeys;
         }
 
+        public IEnumerable<CryptoKey> GetAll()
+        {
+            var configureooVariables = new List<CryptoKey>();
+            foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
+            {
+                string key = de.Key.ToString();
+                if (!key.StartsWith(_namePrefix))
+                {
+                    continue;
+                }
+                configureooVariables.Add(new CryptoKey(key.Substring(_namePrefix.Length), true, de.Value.ToString()));
+            }
+            return configureooVariables;
+        }
+
+        public void Delete(CryptoKey key)
+        {
+            string envName = _namePrefix + key.Name;
+            Environment.SetEnvironmentVariable(envName, null, EnvironmentVariableTarget.Process);
+            Environment.SetEnvironmentVariable(envName, null, EnvironmentVariableTarget.User);
+        }
+
+        public bool Exists(string key)
+        {
+            string envName = _namePrefix + key;
+            return Environment.GetEnvironmentVariable(envName) != null;
+        }
+
         private string FindEnvironmentVariable(string name)
         {
-            return Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Process) ??
-                   Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.User) ??
-                   Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Machine);
+            return Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Process) ?? Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.User);
         }
     }
 }

@@ -23,13 +23,13 @@
                                         <ColumnDefinition Width="50"/>
                                     </Grid.ColumnDefinitions>
                                     <Border Padding="2">
-                                        <TextBlock Text="{Binding Name}" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.ToolWindowTextKey}}" />
+                                        <TextBlock Text="{ Binding Name}" Foreground="{DynamicResource {x:Static vsshell:VsBrushes.ToolWindowTextKey}}" />
                                     </Border>
                                     <Border Padding="2" Grid.Column="1">
-                                        <TextBox Text="{Binding Value}"  Foreground="{DynamicResource {x:Static vsshell:VsBrushes.ToolWindowTextKey}}" Background="{DynamicResource {x:Static vsshell:VsBrushes.SearchBoxBackgroundKey}}"  BorderBrush="{DynamicResource {x:Static vsshell:VsBrushes.SearchBoxBorderKey}}" />
+                                        <TextBox Text="{ Binding Value }"  Foreground="{DynamicResource {x:Static vsshell:VsBrushes.ToolWindowTextKey}}" Background="{DynamicResource {x:Static vsshell:VsBrushes.SearchBoxBackgroundKey}}"  BorderBrush="{DynamicResource {x:Static vsshell:VsBrushes.SearchBoxBorderKey}}" IsReadOnly="True" />
                                     </Border>
                                     <Border Padding="2" Grid.Column="2">
-                                        <Button Content="Delete" ></Button>
+                                        <Button x:Name="DeleteKeyButton" Content="Delete" Tag="{ Binding }" Click="DeleteKeyButton_OnClick"></Button>
                                     </Border>
                                 </Grid>
                             </Border>

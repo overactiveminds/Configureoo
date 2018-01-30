@@ -185,6 +185,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ConfigureooToolWindowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Configureoo.Core\Configureoo.Core.csproj">
       <Project>{ea9b63f7-235c-4c0c-9a0b-378b31d86778}</Project>
       <Name>Configureoo.Core</Name>
@@ -193,12 +199,6 @@
       <Project>{b14bc776-35c8-469f-877f-171530fec54e}</Project>
       <Name>Configureoo.KeyStore.EnvironmentVariables</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="ConfigureooToolWindowControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
