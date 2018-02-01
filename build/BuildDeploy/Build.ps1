@@ -4,6 +4,16 @@
  )
 $ErrorActionPreference = "Stop"
 $WarningPreference = "Stop"
+
+#
+# Set Version Number for VSIX
+#
+$path = Resolve-Path -Path ".\src\Configureoo.VisualStudioTools\source.extension.vsixmanifest"
+[xml]$xml = (Get-Content $temp)
+$node = $xml.PackageManifest.Metadata.Identity
+$node.SetAttribute("Version", $version)
+$xml.Save($path)
+
 #
 # Restore NuGet packages
 #
@@ -12,7 +22,6 @@ $WarningPreference = "Stop"
 #
 # Build
 #
-
 msbuild .\src\Configureoo.sln /p:Configuration=Release /t:Rebuild
 
 #
