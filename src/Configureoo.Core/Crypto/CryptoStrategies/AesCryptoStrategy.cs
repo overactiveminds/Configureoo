@@ -72,7 +72,7 @@ namespace Configureoo.Core.Crypto.CryptoStrategies
 
         public string GenerateKey()
         {
-            const int length = 16;
+            const int length = 32;
             char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
             byte[] data;
             using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
