@@ -90,8 +90,8 @@ namespace Configureoo.Core
 
         private string GetTag(Tag tag, string text, bool includeTags)
         {
-            string keyName = tag.KeyNameSpecified ? tag.Whitespace + tag.KeyName : string.Empty;
-            return includeTags ? $"{tag.OpenTag}CFGO{keyName}{tag.CloseTag}{text}{tag.OpenTag}/CFGO{tag.CloseTag}" : text;
+            string keyName = tag.KeyNameSpecified ? tag.KeyName + "," : string.Empty;
+            return includeTags ? $"{tag.TagName}({keyName}{text})" : text;
         }
     }
 

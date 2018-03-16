@@ -19,7 +19,7 @@ namespace Configureoo.UnitTests
             var keyGenerator = new EnvironmentVariableKeyGenerator(crypto);
             var keyName = "somekeyname";
             keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
-            string plainText = "<CFGO somekeyname>Hello World From Configureoo!!!!</CFGO>";
+            string plainText = "CFGOE(somekeyname,Hello World From Configureoo!!!!)";
             var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), crypto);
 
             // Act
@@ -59,7 +59,7 @@ namespace Configureoo.UnitTests
             var keyGenerator = new EnvironmentVariableKeyGenerator(crypto);
             var keyName = "somekeyname";
             keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
-            string plainText = "<CFGO somekeyname>PlainText</CFGO>";
+            string plainText = "CFGOE(somekeyname,PlainText)";
             string expectedText = "PlainText";
             var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), crypto);
 

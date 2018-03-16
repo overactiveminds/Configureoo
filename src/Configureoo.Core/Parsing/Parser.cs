@@ -5,7 +5,7 @@ namespace Configureoo.Core.Parsing
 {
     public class Parser : IParser
     {
-        private readonly Regex _regEx = new Regex("<CFGO((?<whitespace>\\s)(?<keyname>\\w+))?>(?<text>.*)</CFGO>|\\|CFGO((?<whitespacepipe>\\s)(?<keynamepipe>\\w+))?\\|(?<textpipe>.*)\\|/CFGO\\|");
+        private readonly Regex _regEx = new Regex("(?<tagname>CFGOE|CFGOD)\\(((?<keyname>\\w+),)?(?<text>[^\\)]*)\\)");
 
         public List<Tag> Parse(string input)
         {
@@ -13,39 +13,16 @@ namespace Configureoo.Core.Parsing
             var matches = _regEx.Matches(input);
             foreach (Match match in matches)
             {
-                char openCharacter;
-                char closeCharacter;
-                string keyName;
-                string text;
-                bool hasKey;
-                string whitespace;
+                string keyName = match.Groups["keyname"].Success ? match.Groups["keyname"].Value : "default";
+                string text = match.Groups["text"].Value;
+                string tagName = match.Groups["tagname"].Value;
                 
-                if (match.Groups["text"].Success)
-                {
-                    openCharacter = '<';
-                    closeCharacter = '>';
-                    keyName = match.Groups["keyname"].Value;
-                    text = match.Groups["text"].Value;
-                    hasKey = match.Groups["keyname"].Success;
-                    whitespace = match.Groups["whitespace"].Value;
-                }
-                else
-                {
-                    openCharacter = closeCharacter = '|';
-                    keyName = match.Groups["keynamepipe"].Value;
-                    text = match.Groups["textpipe"].Value;
-                    hasKey = match.Groups["keynamepipe"].Success;
-                    whitespace = match.Groups["whitespacepipe"].Value;
-                }
-
                 tags.Add(new Tag(match.Index, 
-                    match.Length, 
-                    hasKey ? keyName : "default",
-                    hasKey,
+                    match.Length,
+                    keyName,
+                    match.Groups["keyname"].Success,
                     text, 
-                    openCharacter, 
-                    closeCharacter,
-                    whitespace)
+                    tagName)
                 );
             }
             return tags;
