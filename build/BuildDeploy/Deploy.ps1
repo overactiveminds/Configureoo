@@ -8,10 +8,10 @@ $WarningPreference = "Stop"
 #
 # Use Configureoo to decrypt our keys
 #
-$nugetApiKeyCipherText = "EBydBeVXZ/q7hngUAVKFImYmwRtsVYPX9DfcgmecJ8UlKnAUVsw2TjGF+5628qSdFJVrDkUBhILfueo68NP3Ew=="
-$githubApiKeyCipherText = "HBlfUHJDOSI8qIu+2x/EwUamltddyf3kkGlIkYEcdoXvdmLkjCamPPYtqf4NUStbjvdIAYJK1T2FPymwaQ7CNw=="
+$nugetApiKeyCipherText = "niwFkPjMPvg6kZO5n0A7qhBXHgJgOBMxxe6dRJhAfPiRDEWGNCgbhNyFg61uBKTPsDg/7hgx2Eb44prrhL4+fA=="
+$githubApiKeyCipherText = "kjInlwsn7AJKdeEr5n7HizDyujg40x74LMakL0qpvrCaZQa3QhryGIaZUIVcoPPh+JVMa5/9lhuQGeImMXUR4A=="
 $nugetApiKey = .\src\Configureoo\bin\Release\net47\Configureoo decryptvalue -k nuget -ct $nugetApiKeyCipherText
-$githubToken = .\src\Configureoo\bin\Release\net47\Configureoo decryptvalue -k nuget -ct $githubApiKeyCipherText
+$githubToken = .\src\Configureoo\bin\Release\net47\Configureoo decryptvalue -k github -ct $githubApiKeyCipherText
 
 #
 # Create Release on github and upload binaries
