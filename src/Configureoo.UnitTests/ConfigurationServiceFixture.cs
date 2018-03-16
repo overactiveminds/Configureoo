@@ -27,6 +27,7 @@ namespace Configureoo.UnitTests
             string plainTextReturned = sut.DecryptForEdit(cipherText);
 
             // Assert
+            Assert.AreNotEqual(cipherText, plainText);
             Assert.AreEqual(plainText, plainTextReturned);
         }
 
@@ -48,6 +49,7 @@ namespace Configureoo.UnitTests
             string plainTextReturned = sut.DecryptForLoad(cipherText);
 
             // Assert
+            Assert.AreNotEqual(cipherText, plainText);
             Assert.AreEqual(expectedText, plainTextReturned);
         }
     }
