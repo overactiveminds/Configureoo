@@ -1,7 +1,11 @@
 ﻿param (
     [Parameter(Mandatory=$true)]
 	[string]$version
- )
+)
+param (
+	[Parameter(Mandatory=$true)]
+	[string]$vsixVersion
+)
 $ErrorActionPreference = "Stop"
 $WarningPreference = "Stop"
 
@@ -11,7 +15,7 @@ $WarningPreference = "Stop"
 $path = Resolve-Path -Path ".\src\Configureoo.VisualStudioTools\source.extension.vsixmanifest"
 [xml]$xml = (Get-Content $path)
 $node = $xml.PackageManifest.Metadata.Identity
-$node.SetAttribute("Version", $version)
+$node.SetAttribute("Version", $vsixVersion)
 $xml.Save($path)
 
 #
