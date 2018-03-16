@@ -31,26 +31,6 @@ namespace Configureoo.UnitTests
         }
 
         [Test]
-        public void EncryptForStoragePipes()
-        {
-            // Arrange
-            const string envVarsPrefix = "CONFIGUREOO_";
-            var crypto = new AesCryptoStrategy();
-            var keyGenerator = new EnvironmentVariableKeyGenerator(crypto);
-            var keyName = "somekeyname";
-            keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
-            string plainText = "|CFGO somekeyname|PlainText|/CFGO|";
-            var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), crypto);
-
-            // Act
-            string cipherText = sut.EncryptForStorage(plainText);
-            string plainTextReturned = sut.DecryptForEdit(cipherText);
-
-            // Assert
-            Assert.AreEqual(plainText, plainTextReturned);
-        }
-
-        [Test]
         public void DecryptForLoad()
         {
             // Arrange
