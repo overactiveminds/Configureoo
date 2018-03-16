@@ -9,7 +9,7 @@ $WarningPreference = "Stop"
 # Set Version Number for VSIX
 #
 $path = Resolve-Path -Path ".\src\Configureoo.VisualStudioTools\source.extension.vsixmanifest"
-[xml]$xml = (Get-Content $temp)
+[xml]$xml = (Get-Content $path)
 $node = $xml.PackageManifest.Metadata.Identity
 $node.SetAttribute("Version", $version)
 $xml.Save($path)
