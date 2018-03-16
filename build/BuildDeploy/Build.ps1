@@ -1,8 +1,6 @@
 ﻿param (
     [Parameter(Mandatory=$true)]
-	[string]$version
-)
-param (
+	[string]$version,
 	[Parameter(Mandatory=$true)]
 	[string]$vsixVersion
 )
