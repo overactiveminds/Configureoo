@@ -75,8 +75,31 @@ namespace Configureoo.Core
             {
                 writer.Write(source.Substring(currentChar, tag.Index - currentChar));
                 var key = keys[tag.KeyName];
-                string text = encrypt ? _cryptoStrategy.Encrypt(tag.Text, key.Key) : _cryptoStrategy.Decrypt(tag.Text, key.Key);
-                writer.Write(GetTag(tag, text, includeTags));
+                string text;
+                bool isCipherText;
+                if (encrypt)
+                {
+                    isCipherText = true;
+                    text = tag.Text;
+                    // We've been asked to encrypt this value, check the tag type
+                    if (tag.TagName == "CFGOE")
+                    {
+                        // We have a tag as plain text
+                        text = _cryptoStrategy.Encrypt(tag.Text, key.Key);
+                    }
+                }
+                else
+                {
+                    isCipherText = false;
+                    text = tag.Text;
+                    // We've been asked to decrypt this value, check the tag type
+                    if (tag.TagName == "CFGOD")
+                    {
+                        // We have a tag containing cipher text
+                        text = _cryptoStrategy.Decrypt(tag.Text, key.Key);
+                    }
+                }
+                writer.Write(GetTag(tag, text, includeTags, isCipherText));
                 currentChar = tag.Index + tag.Length;
             }
 
@@ -88,10 +111,15 @@ namespace Configureoo.Core
             return writer.ToString();
         }
 
-        private string GetTag(Tag tag, string text, bool includeTags)
+        private string GetTag(Tag tag, string text, bool includeTags, bool isCipherText)
         {
-            string keyName = tag.KeyNameSpecified ? tag.Whitespace + tag.KeyName : string.Empty;
-            return includeTags ? $"{tag.OpenTag}CFGO{keyName}{tag.CloseTag}{text}{tag.OpenTag}/CFGO{tag.CloseTag}" : text;
+            if (!includeTags)
+            {
+                return text;
+            }
+            string tagName = isCipherText ? "CFGOD" : "CFGOE";
+            string keyName = tag.KeyNameSpecified ? tag.KeyName + "," : string.Empty;
+            return $"{tagName}({keyName}{text})";
         }
     }
 

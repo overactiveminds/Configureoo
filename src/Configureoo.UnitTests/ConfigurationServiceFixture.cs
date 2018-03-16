@@ -19,7 +19,7 @@ namespace Configureoo.UnitTests
             var keyGenerator = new EnvironmentVariableKeyGenerator(crypto);
             var keyName = "somekeyname";
             keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
-            string plainText = "<CFGO somekeyname>Hello World From Configureoo!!!!</CFGO>";
+            string plainText = "CFGOE(somekeyname,Hello World From Configureoo!!!!)";
             var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), crypto);
 
             // Act
@@ -27,26 +27,7 @@ namespace Configureoo.UnitTests
             string plainTextReturned = sut.DecryptForEdit(cipherText);
 
             // Assert
-            Assert.AreEqual(plainText, plainTextReturned);
-        }
-
-        [Test]
-        public void EncryptForStoragePipes()
-        {
-            // Arrange
-            const string envVarsPrefix = "CONFIGUREOO_";
-            var crypto = new AesCryptoStrategy();
-            var keyGenerator = new EnvironmentVariableKeyGenerator(crypto);
-            var keyName = "somekeyname";
-            keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
-            string plainText = "|CFGO somekeyname|PlainText|/CFGO|";
-            var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), crypto);
-
-            // Act
-            string cipherText = sut.EncryptForStorage(plainText);
-            string plainTextReturned = sut.DecryptForEdit(cipherText);
-
-            // Assert
+            Assert.AreNotEqual(cipherText, plainText);
             Assert.AreEqual(plainText, plainTextReturned);
         }
 
@@ -59,7 +40,7 @@ namespace Configureoo.UnitTests
             var keyGenerator = new EnvironmentVariableKeyGenerator(crypto);
             var keyName = "somekeyname";
             keyGenerator.Generate(envVarsPrefix, keyName, EnvironmentVariableTarget.Process);
-            string plainText = "<CFGO somekeyname>PlainText</CFGO>";
+            string plainText = "CFGOE(somekeyname,PlainText)";
             string expectedText = "PlainText";
             var sut = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(envVarsPrefix), crypto);
 
@@ -68,6 +49,7 @@ namespace Configureoo.UnitTests
             string plainTextReturned = sut.DecryptForLoad(cipherText);
 
             // Assert
+            Assert.AreNotEqual(cipherText, plainText);
             Assert.AreEqual(expectedText, plainTextReturned);
         }
     }
