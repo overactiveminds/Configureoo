@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Configureoo.VisualStudioTools
 {
@@ -26,8 +27,17 @@ namespace Configureoo.VisualStudioTools
         protected override void Initialize()
         {
             base.Initialize();
-            EncryptCommand.Initialize(this);
-            DecryptCommand.Initialize(this);
+
+
+            // Create our oupt pane for the log
+            IVsOutputWindow outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
+            Guid customGuid = new Guid("F1B02DC8-A0A3-4866-BEF4-E4D370F33CF2");
+            const string customTitle = "Configureoo";
+            outWindow.CreatePane(ref customGuid, customTitle, 1, 1);
+            outWindow.GetPane(ref customGuid, out var _outputPane);
+
+            EncryptCommand.Initialize(this, _outputPane);
+            DecryptCommand.Initialize(this, _outputPane);
             Configureoo.VisualStudioTools.ConfigureooToolWindowCommand.Initialize(this);
         }
     }

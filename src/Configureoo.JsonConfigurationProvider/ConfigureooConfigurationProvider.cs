@@ -27,7 +27,7 @@ namespace Configureoo.JsonConfigurationProvider
                 source = reader.ReadToEnd();
             }
 
-            ConfigurationService service = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(), new AesCryptoStrategy());
+            ConfigurationService service = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(), new AesCryptoStrategy(), new NullLog());
             source = service.DecryptForLoad(source);
 
             using (var memStream = new MemoryStream(Encoding.Default.GetBytes(source)))

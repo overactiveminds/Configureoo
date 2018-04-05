@@ -12,8 +12,9 @@
 
         public string Text { get; }
         public string TagName { get; }
+        public int Position { get; }
 
-        public Tag(int index, int length, string keyname, bool keyNameSpecified, string text, string tagName)
+        public Tag(int index, int length, string keyname, bool keyNameSpecified, string text, string tagName, int position)
         {
             Index = index;
             Length = length;
@@ -21,6 +22,7 @@
             KeyNameSpecified = keyNameSpecified;
             Text = text;
             TagName = tagName;
+            Position = position;
         }
     }
 }

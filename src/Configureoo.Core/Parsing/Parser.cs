@@ -16,13 +16,14 @@ namespace Configureoo.Core.Parsing
                 string keyName = match.Groups["keyname"].Success ? match.Groups["keyname"].Value : "default";
                 string text = match.Groups["text"].Value;
                 string tagName = match.Groups["tagname"].Value;
-                
+
                 tags.Add(new Tag(match.Index, 
                     match.Length,
                     keyName,
                     match.Groups["keyname"].Success,
                     text, 
-                    tagName)
+                    tagName,
+                    match.Index)
                 );
             }
             return tags;
