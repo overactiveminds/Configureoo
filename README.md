@@ -18,7 +18,7 @@ This command will create a 128 bit random key and store it in the environment va
 
 ```JSON
 {
-  "someSensitiveValue": "CFGOE(some private key)",
+  "someSensitiveValue": "CFGOE(some private value)",
   "someNonSensitiveValue": "Some other value"
 }
 ```
