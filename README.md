@@ -18,7 +18,7 @@ This command will create a 128 bit random key and store it in the environment va
 
 ```JSON
 {
-  "someSensitiveValue": "<CFGO>some private key</CFGO>",
+  "someSensitiveValue": "CFGOE(some private key)",
   "someNonSensitiveValue": "Some other value"
 }
 ```
@@ -33,7 +33,7 @@ Results in a file similar to:
 
 ```Json
 {
-  "someSensitiveValue": "<CFGO>XFgySLm78ezB3OTwbNp1fpTnLN2ewI+SnPVQZqTxxd6GlTwL/UhDiJnALc5eGcHN</CFGO>",
+  "someSensitiveValue": "CFGOD(XFgySLm78ezB3OTwbNp1fpTnLN2ewI+SnPVQZqTxxd6GlTwL/UhDiJnALc5eGcHN)",
   "someNonSensitiveValue": "Some other value"
 }
 ```
@@ -62,16 +62,7 @@ Yes - in fact there's already an experimental Visual Studio Plugin that allows y
 
 ## Are there any binaries?
 
-Yes, we're currently publishing the alpha packages to nuget, grab them from here:
-
-https://www.nuget.org/packages/Overactiveminds.Configureoo/
-
-https://www.nuget.org/packages/Overactiveminds.Configureoo.Core/
-
-https://www.nuget.org/packages/Overactiveminds.Configureoo.JsonConfigurationProvider/
-
-https://www.nuget.org/packages/Overactiveminds.Configureoo.KeyStore.EnvironmentVariables/
-
+Yes, checkout the releases page.
 
 
 
