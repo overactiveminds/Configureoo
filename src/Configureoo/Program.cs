@@ -16,7 +16,7 @@ namespace Configureoo
         {
             var app = new CommandLineApplication();
             string EnvironmentVariablePrefix = "CONFIGUREOO_";
-            var parser = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(EnvironmentVariablePrefix), new AesCryptoStrategy());
+            var parser = new ConfigurationService(new Parser(), new EnvironmentVariablesKeyStore(EnvironmentVariablePrefix), new AesCryptoStrategy(), new ConsoleLog());
 
             app.Command("encrypt", c =>
             {
